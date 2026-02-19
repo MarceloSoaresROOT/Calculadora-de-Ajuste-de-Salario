@@ -1,0 +1,30 @@
+{
+  "name": "calculadora-de-ajuste-de-salario",
+  "version": "1.0.0",
+  "description": " programa web para calcular um ajuste de salario com base em alguns parametros ",
+  "keywords": [
+    "htt",
+    "express",
+    "node",
+    "API"
+  ],
+  "homepage": "https://github.com/MarceloSoaresROOT/Calculadora-de-Ajuste-de-Salario#readme",
+  "bugs": {
+    "url": "https://github.com/MarceloSoaresROOT/Calculadora-de-Ajuste-de-Salario/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarceloSoaresROOT/Calculadora-de-Ajuste-de-Salario.git"
+  },
+  "license": "ISC",
+  "author": "Marcelo Henrique",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
