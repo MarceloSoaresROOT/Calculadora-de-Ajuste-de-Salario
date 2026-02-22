@@ -7,19 +7,16 @@ const server = express();
 server.get('/', (req, res) => {
     //pegando dados url
     const { idade, sexo, salario_base, anoContratacao, ano_atual, matricula } = req.query;
-
     // se por acaso o usuario nao digitar nada, mostra só a tabela
     if (!idade) {
         return res.send(gerarPaginaHtml("Informe os dados na URL para calcular o reajuste."));
     }
-
     //verificar os dados digitados na url
     const idadeNumero = parseInt(idade);
     const salarioBaseNumero = parseFloat(salario_base);
     const anoContratacaoNumero = parseInt(anoContratacao);
     const matriculaNumero = parseInt(matricula);
     const anoAtualNumero = parseInt(ano_atual);
-
     //evitando erros e alertando o usuario
     let erros = [];
     if (isNaN(idadeNumero) || idadeNumero <= 16) erros.push("Idade não valida. Precisa ser maior de 16 anos.");
@@ -27,17 +24,14 @@ server.get('/', (req, res) => {
     if (isNaN(anoContratacaoNumero) || anoContratacaoNumero <= 1960) erros.push("O ano de contratação deve ser maior que 1960.");
     if (isNaN(anoAtualNumero) || anoAtualNumero <= 1900) erros.push("O ano atual deve ser maior que 1900.");
     if (isNaN(matriculaNumero) || matriculaNumero <= 0) erros.push("A matrícula deve ser maior que zero.");
-
     if (erros.length > 0) {
         return res.send(gerarPaginaHtml(`<h3 style="color: red;">Erro: ${erros.join(' | ')}</h3>`));
     }
-
     //calculos de salario e aumentos
     let reajustePercent = 0;
     let valorExtra = 0;
     const tempoEmpresa = anoAtualNumero - anoContratacaoNumero;
     const s = sexo?.toUpperCase();
-
     if (idadeNumero >= 18 && idadeNumero <= 39) {
         if (s === 'M') { reajustePercent = 0.10; valorExtra = (tempoEmpresa <= 10) ? -10 : 17; }
         else { reajustePercent = 0.08; valorExtra = (tempoEmpresa <= 10) ? -11 : 16; }
@@ -51,7 +45,6 @@ server.get('/', (req, res) => {
         else { reajustePercent = 0.17; valorExtra = (tempoEmpresa <= 10) ? -17 : 12; }
     }
     const novoSalario = (salarioBaseNumero * (1 + reajustePercent)) + valorExtra;
-
     //mostrando o resultado em uma tabela
     const resultadoHTML = `
         <div style="background: #e0ffd4; padding: 20px; border: 2px solid #27ae60; margin-top: 20px; text-align: center; font-family: Arial;">
@@ -92,5 +85,4 @@ function gerarPaginaHtml(conteudoExtra) {
 </html>`;
 }
 server.listen(porta, host, () => {
-    console.log('Servidor rodando em http://' + host + ':' + porta);
-});
+    console.log('Servidor rodando em http://' + host + ':' + porta);});
