@@ -52,7 +52,7 @@ server.get('/', (req, res) => {
     }
     const novoSalario = (salarioBaseNumero * (1 + reajustePercent)) + valorExtra;
 
-    // mostrando o resultado em uma tabela
+    //mostrando o resultado em uma tabela
     const resultadoHTML = `
         <div style="background: #e0ffd4; padding: 20px; border: 2px solid #27ae60; margin-top: 20px; text-align: center; font-family: Arial;">
             <h3 style="color: #27ae60;">Cálculo Realizado para Matrícula: ${matriculaNumero}</h3>
@@ -63,7 +63,7 @@ server.get('/', (req, res) => {
     `;
     res.send(gerarPaginaHtml(resultadoHTML));
 });
-// Função auxiliar para não repetir o código do HTML e da Tabela
+//gerar novamente a tabela
 function gerarPaginaHtml(conteudoExtra) {
     return `<!DOCTYPE html>
 <html lang="pt-br">
@@ -75,7 +75,7 @@ function gerarPaginaHtml(conteudoExtra) {
     <h2 style="text-align: center;">Sistema de Reajuste Salarial</h2>
   <div style="max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px;">
      <p><strong>Como usar:</strong> Adicione os dados na URL. Exemplo:<br>
-      <code style="background: #eee; padding: 5px;">http://localhost:3000/?idade=30&sexo=F&salario_base=3000&anoContratacao=2020&ano_atual=2026&matricula=555</code></p>
+      <code style="background: #eee; padding: 5px;">?idade=30&sexo=F&salario_base=3000&anoContratacao=2020&ano_atual=2026&matricula=555</code></p>
         <table style="border-collapse: collapse; width: 100%; text-align: center; background-color: #000; color: yellow;">
         <tr style="background: #333;">
                 <th>Faixa etária</th><th>Sexo</th><th>Reajuste</th><th>Até 10 anos (Desc.)</th><th>+10 anos (Acrésc.)</th></tr>
